@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const UserRouter = require('./Controller/UserControl');
+
 const connectDB = require('./Database/db');
-const env = require('dotenv').config();
+const router = require('./Router/UserRoute');
+const env = require('dotenv').config({path: './Config/.env'});
 
 const port = process.env.PORT;
 const url = process.env.db_url;
+console.log(url)
 const app = express();
 
 app.use(express.json());
-app.use('/api',UserRouter);
+app.use('/api',router);
 
 app.listen(port, async()=>{
     try{
